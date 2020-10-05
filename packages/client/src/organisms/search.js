@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from "react";
-import { Button, Input } from "atoms";
+import { Button, Input, H } from "atoms";
 import { Redirect } from "react-router-dom";
 import Units from "molecules/units";
 import { useSearchStateValue } from "context/searchContext";
@@ -28,7 +28,7 @@ const Search = () => {
 
     return (
         <div className="mb-3">
-            <h2>Settings</h2>
+            <H size={2}>Settings</H>
             <hr />
             <Input
                 onChange={handleOnChange}

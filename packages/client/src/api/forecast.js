@@ -14,6 +14,8 @@ const forecastQuery = `query getFutureForecast($lat: Float!, $lon: Float!, $unit
         tempNight
         feelsLikeDay
         feelsLikeNight
+        windSpeed
+        humidity
     }
 }`;
 

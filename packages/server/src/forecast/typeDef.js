@@ -15,6 +15,8 @@ const forecastType = new graphql.GraphQLObjectType({
         tempNight: { type: graphql.GraphQLFloat },
         feelsLikeDay: { type: graphql.GraphQLFloat },
         feelsLikeNight: { type: graphql.GraphQLFloat },
+        windSpeed: { type: graphql.GraphQLString },
+        humidity: { type: graphql.GraphQLString },
     },
 });
 

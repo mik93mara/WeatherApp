@@ -3,7 +3,7 @@ const get = require("lodash/get");
 const map = require("lodash/map");
 const { oneCall } = require("../weather");
 
-const futureDaysForecast = (futureDays) =>
+const futureDaysForecast = (futureDays, unit) =>
     map(futureDays || [], (day) => {
         const forecast = get(day, "weather[0]");
         const dt = get(day, "dt");
@@ -11,6 +11,13 @@ const futureDaysForecast = (futureDays) =>
         const tempNight = get(day, "temp.night");
         const feelsLikeDay = get(day, "feels_like.day");
         const feelsLikeNight = get(day, "feels_like.night");
+        const windSpeedValue = get(day, "wind_speed");
+        const humidity = `${get(day, "humidity")} %`;
+
+        let windSpeedUnit = "miles/hour";
+        if (unit === "metric") windSpeedUnit = "metre/sec";
+
+        const windSpeed = `${windSpeedValue} ${windSpeedUnit}`;
 
         return {
             ...forecast,
@@ -19,9 +26,11 @@ const futureDaysForecast = (futureDays) =>
             tempNight,
             feelsLikeDay,
             feelsLikeNight,
-            tempNow: 0,
-            feelsLikeNow: 0,
+            tempNow: 999,
+            feelsLikeNow: 999,
             isCurrent: false,
+            windSpeed,
+            humidity,
         };
     });
 
@@ -35,20 +44,29 @@ const fetchForecast = async (props) => {
     const futureDays = get(response, "daily", []);
     const currentTempNow = get(response, "current.temp");
     const currentFeelsLikeNow = get(response, "current.feels_like");
+    const windSpeedValue = get(response, "current.wind_speed");
+    const humidity = `${get(response, "current.humidity")} %`;
+
+    let windSpeedUnit = "miles/hour";
+    if (unit === "metric") windSpeedUnit = "metre/sec";
+
+    const windSpeed = `${windSpeedValue} ${windSpeedUnit}`;
 
     return [
         {
             ...todaysForecast,
             dt: todaysDateTime,
             isCurrent: true,
-            tempDay: 0,
-            tempNight: 0,
-            feelsLikeDay: 0,
-            feelsLikeNight: 0,
+            tempDay: 999,
+            tempNight: 999,
+            feelsLikeDay: 999,
+            feelsLikeNight: 999,
             tempNow: currentTempNow,
             feelsLikeNow: currentFeelsLikeNow,
+            windSpeed,
+            humidity,
         },
-        ...futureDaysForecast(futureDays),
+        ...futureDaysForecast(futureDays, unit),
     ];
 };
 

@@ -3,8 +3,11 @@ import Radio from "atoms/radio";
 import { useSearchStateValue } from "context/searchContext";
 
 const Units = () => {
-    const { setUnits } = useSearchStateValue();
-    const [checkedValue, setCheckedValue] = useState("metric");
+    const {
+        setUnits,
+        state: { units },
+    } = useSearchStateValue();
+    const [checkedValue, setCheckedValue] = useState(units);
     const handleClick = useCallback((unit) => {
         setCheckedValue(unit);
         setUnits(unit);

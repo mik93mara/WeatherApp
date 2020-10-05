@@ -12,8 +12,8 @@ const initialState = {
 
 function reducer(state, action) {
     switch (action.type) {
-        case "SET_SEARCH_ON":
-            return { ...state, searchOn: action.payload };
+        case "SET_LOCATION":
+            return { ...state, location: action.payload };
         case "SET_COORDINATES":
             return { ...state, coordinates: action.payload };
         case "SET_FORECAST":
@@ -52,9 +52,9 @@ const SearchProvider = (props) => {
     };
 
     const searchOn = async (city) => {
-        if (city) {
+        if (city && city !== state.location) {
             dispatch({
-                type: "SET_SEARCH_ON",
+                type: "SET_LOCATION",
                 payload: city,
             });
             await fetchLatLongApi(city);
