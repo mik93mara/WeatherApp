@@ -5,6 +5,7 @@ const SearchContext = React.createContext(undefined, undefined);
 
 const initialState = {
     location: "",
+    units: "imperial",
     coordinates: {},
     forecast: [],
 };
@@ -17,6 +18,8 @@ function reducer(state, action) {
             return { ...state, coordinates: action.payload };
         case "SET_FORECAST":
             return { ...state, forecast: action.payload };
+        case "SET_UNITS":
+            return { ...state, units: action.payload };
         default:
             return state;
     }
@@ -27,7 +30,8 @@ const SearchProvider = (props) => {
 
     const fetchForecastApi = async (lat, lon) => {
         if (lat && lon) {
-            const { forecast } = await fetchForecast(lat, lon);
+            const unit = state.units;
+            const { forecast } = await fetchForecast(lat, lon, unit);
             dispatch({
                 type: "SET_FORECAST",
                 payload: forecast,
@@ -57,8 +61,17 @@ const SearchProvider = (props) => {
         }
     };
 
+    const setUnits = (unit) => {
+        if (unit) {
+            dispatch({
+                type: "SET_UNITS",
+                payload: unit,
+            });
+        }
+    };
+
     return (
-        <SearchContext.Provider value={{ state, dispatch, searchOn }}>
+        <SearchContext.Provider value={{ state, dispatch, searchOn, setUnits }}>
             {props.children}
         </SearchContext.Provider>
     );

@@ -13,7 +13,7 @@ const Button = (props) => {
     };
 
     return (
-        <div className="input-group-append">
+        <div className="col-12">
             <button className={classname} type={type} onClick={handleOnClick}>
                 {children}
             </button>

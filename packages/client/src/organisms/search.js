@@ -1,13 +1,18 @@
 import React, { useCallback, useState } from "react";
 import { Button, Input } from "atoms";
+import { Redirect } from "react-router-dom";
+import Units from "molecules/units";
 import { useSearchStateValue } from "context/searchContext";
 
 const Search = () => {
-    const { searchOn } = useSearchStateValue();
-    const [searchOnCity, setSearchOnCity] = useState("");
+    const { searchOn, state } = useSearchStateValue();
+    const { searchOn: city } = state;
+    const [searchOnCity, setSearchOnCity] = useState(city || "");
+    const [redirect, setRedirect] = useState(false);
 
     const handleOnClick = useCallback(() => {
         searchOn(searchOnCity);
+        setRedirect(true);
     }, [searchOnCity, searchOn]);
 
     const handleOnChange = useCallback(
@@ -16,14 +21,22 @@ const Search = () => {
         },
         [setSearchOnCity]
     );
+
+    if (redirect) {
+        return <Redirect to="/" push />;
+    }
+
     return (
-        <div className="input-group mb-3">
+        <div className="mb-3">
+            <h2>Settings</h2>
+            <hr />
             <Input
                 onChange={handleOnChange}
                 placeholder="London or Chicago,Illinois"
                 value={searchOnCity}
             />
-            <Button onClick={handleOnClick}>Search</Button>
+            <Units />
+            <Button onClick={handleOnClick}>Done</Button>
         </div>
     );
 };
