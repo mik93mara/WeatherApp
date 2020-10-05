@@ -4,9 +4,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "npm start --prefix server & npm start --prefix client"
+    "bootstrap": "lerna bootstrap",
+    "clean": "lerna clean --yes",
+    "start": "lerna run start",
+    "test": "lerna run test --parallel"
   },
   "author": "",
   "license": "ISC",
-  "dependencies": {}
+  "devDependencies": {
+    "lerna": "^3.22.1"
+  }
 }
