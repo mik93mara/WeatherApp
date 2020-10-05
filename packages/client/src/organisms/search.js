@@ -1,23 +1,36 @@
 import React, { useCallback, useState } from "react";
+import get from "lodash/get";
+import trim from "lodash/trim";
 import { Button, Input, H } from "atoms";
 import { Redirect } from "react-router-dom";
 import Units from "molecules/units";
 import { useSearchStateValue } from "context/searchContext";
 
+let prevUnits = "";
+
 const Search = () => {
     const { searchOn, state } = useSearchStateValue();
-    const { searchOn: city } = state;
-    const [searchOnCity, setSearchOnCity] = useState(city || "");
+    const location = get(state, "location", "");
+    const units = get(state, "units", "");
+    const [searchOnCity, setSearchOnCity] = useState(location || "");
     const [redirect, setRedirect] = useState(false);
 
     const handleOnClick = useCallback(() => {
-        searchOn(searchOnCity);
+        const currentCity = get(state, "location", "");
+        if (
+            searchOnCity &&
+            (searchOnCity !== currentCity || prevUnits !== units)
+        ) {
+            searchOn(searchOnCity);
+            prevUnits = units;
+        }
         setRedirect(true);
-    }, [searchOnCity, searchOn]);
+    }, [searchOnCity, searchOn, units, prevUnits]);
 
     const handleOnChange = useCallback(
         (event) => {
-            setSearchOnCity(event.target.value);
+            const searchValue = trim(event.target.value);
+            if (searchValue) setSearchOnCity(searchValue);
         },
         [setSearchOnCity]
     );

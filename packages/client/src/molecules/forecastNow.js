@@ -52,7 +52,7 @@ const ForecastNow = (props) => {
                     <div className="d-flex justify-content-between mb-4">
                         <p>
                             <i className="fa fa-tint fa-2x text-info pr-2"></i>
-                            {humidity} Precipitation
+                            {humidity} Humidity
                         </p>
                         <p>
                             <i className="fa fa-leaf fa-2x grey-text pr-2"></i>

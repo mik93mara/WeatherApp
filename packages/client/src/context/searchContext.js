@@ -1,4 +1,5 @@
 import * as React from "react";
+import get from "lodash/get";
 import { fetchForecast, fetchLatLong } from "api";
 
 const SearchContext = React.createContext(undefined, undefined);
@@ -52,7 +53,7 @@ const SearchProvider = (props) => {
     };
 
     const searchOn = async (city) => {
-        if (city && city !== state.location) {
+        if (city) {
             dispatch({
                 type: "SET_LOCATION",
                 payload: city,

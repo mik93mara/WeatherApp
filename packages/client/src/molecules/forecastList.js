@@ -4,11 +4,10 @@ import { getDayOfWeek, getMonthDay } from "utils";
 
 const ForecastList = (props) => {
     const { list = [] } = props;
-    const visibleList = list.splice(0, 6);
 
     return (
         <ul className="list-group">
-            {visibleList.map((dayForecast, i) => {
+            {list.map((dayForecast, i) => {
                 const {
                     dt,
                     icon,
