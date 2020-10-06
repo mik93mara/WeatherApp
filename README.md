@@ -22,9 +22,11 @@ The app expects the user to provide a (city), (city,state) or (city,country) to 
 
 > npm run clean
 
-### Test
+### Testing Server/Client
 
-> npm run test
+> npm run test:server
+
+> npm run test:client
 
 ### loading the App
 
