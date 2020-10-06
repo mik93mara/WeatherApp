@@ -1,5 +1,5 @@
 import React from "react";
-import { guidGenerator } from "./util";
+import { guidGenerator } from "utils";
 
 const Radio = (props) => {
     const { label, value, checkedValue, onChange } = props;
