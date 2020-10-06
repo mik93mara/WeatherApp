@@ -1,6 +1,7 @@
 import React from "react";
 import { Img, Badge } from "atoms";
 import { getDayOfWeek, getMonthDay } from "utils";
+import { language } from "i18n";
 
 const ForecastList = (props) => {
     const { list = [] } = props;
@@ -23,7 +24,7 @@ const ForecastList = (props) => {
                         key={dt}
                         className="list-group-item d-flex justify-content-between align-items-center"
                     >
-                        <div className="h3">Now</div>
+                        <div className="h3">{language["forecast.now"]}</div>
                         <Img src={icon} />
                         <Badge title="Temp" value={tempNow} />
                         <Badge title="Feels Like" value={feelsLikeNow} />

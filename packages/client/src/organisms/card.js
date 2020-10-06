@@ -2,6 +2,7 @@ import React from "react";
 import ForecastList from "molecules/forecastList";
 import ForecastNow from "molecules/forecastNow";
 import { H } from "atoms";
+import { language } from "i18n";
 
 const Card = (props) => {
     const {
@@ -13,7 +14,7 @@ const Card = (props) => {
 
     return (
         <>
-            <H size={2}>Weather Forecast</H>
+            <H size={2}>{language["forecast.title"]}</H>
             <hr />
 
             <div className="card weather-card">

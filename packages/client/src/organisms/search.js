@@ -4,6 +4,7 @@ import trim from "lodash/trim";
 import { Button, Input, H } from "atoms";
 import { Redirect } from "react-router-dom";
 import Units from "molecules/units";
+import { language } from "i18n";
 import { useSearchStateValue } from "context/searchContext";
 
 let prevUnits = "";
@@ -41,7 +42,7 @@ const Search = () => {
 
     return (
         <div className="mb-3">
-            <H size={2}>Settings</H>
+            <H size={2}>{language["search.title"]}</H>
             <hr />
             <Input
                 onChange={handleOnChange}

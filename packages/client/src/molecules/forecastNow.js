@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import get from "lodash/get";
 import { getDayTime } from "utils";
 import { Img, H } from "atoms";
+import { language } from "i18n";
 
 const ForecastNow = (props) => {
     const { info } = props;
@@ -20,7 +21,7 @@ const ForecastNow = (props) => {
             {!location && (
                 <H size={3}>
                     <div className="d-flex justify-content-center align-items-center">
-                        <div>No results found! Please try again</div>
+                        <div>{language["forecast.no.results"]}</div>
                         <Link to="/settings">
                             <i className="fa fa-cog fa-2x grey-text pr-2"></i>{" "}
                             {units === "imperial" ? "\u00b0F" : "\u00b0C"}
@@ -52,11 +53,11 @@ const ForecastNow = (props) => {
                     <div className="d-flex justify-content-between mb-4">
                         <p>
                             <i className="fa fa-tint fa-2x text-info pr-2"></i>
-                            {humidity} Humidity
+                            {humidity} {language["forecast.humidity"]}
                         </p>
                         <p>
                             <i className="fa fa-leaf fa-2x grey-text pr-2"></i>
-                            {windSpeed} Winds
+                            {windSpeed} {language["forecast.winds"]}
                         </p>
                     </div>
                 </>
