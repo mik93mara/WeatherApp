@@ -7,7 +7,8 @@
     "bootstrap": "lerna bootstrap",
     "clean": "lerna clean --yes",
     "start": "lerna run --parallel start",
-    "test": "lerna run test --parallel"
+    "test:server": "lerna exec --scope server -- npm run test",
+    "test:client": "lerna exec --scope client -- npm run test"
   },
   "author": "",
   "license": "ISC",
