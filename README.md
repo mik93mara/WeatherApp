@@ -10,13 +10,13 @@ The app expects the user to provide a (city), (city,state) or (city,country) to 
 
 > npm i
 
-### Running the App
-
-> npm run start
-
 ### Bootstrap
 
 > npm run bootstrap
+
+### Running the App
+
+> npm run start
 
 ### Clean
 
