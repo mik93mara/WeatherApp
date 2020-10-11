@@ -16,7 +16,7 @@ The app expects the user to provide a (city), (city,state) or (city,country) to 
 
 > npm run start
 
-### Clean Package Dependencies
+### Clean/Install Package Dependencies
 
 > npm run clean
 
