@@ -15,7 +15,7 @@ const Input = (props) => {
     const id = `inputFor${guidGenerator()}`;
     return (
         <div className="form-group">
-            <label htmlFor={id}>Password</label>
+            <label htmlFor={id}>Enter Location</label>
 
             <input
                 type="text"
