@@ -21,8 +21,8 @@ const Card = (props) => {
                 <div className="card-body pb-3">
                     {loading ? (
                         <>
-                            <i class="fa fa-cog fa-spin fa-3x fa-fw"></i>
-                            <span class="sr-only">Loading...</span>
+                            <i className="fa fa-cog fa-spin fa-3x fa-fw"></i>
+                            <span className="sr-only">Loading...</span>
                         </>
                     ) : (
                         <>

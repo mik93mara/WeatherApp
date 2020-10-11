@@ -40,6 +40,5 @@ export const fetchForecast = async (lat, lon, unit) => {
             return d.data;
         })
         .catch((error) => error);
-    console.log("fetchForecast -> futureForecast", futureForecast);
     return futureForecast;
 };

@@ -6,11 +6,12 @@ const Input = (props) => {
         classname = "form-control mb-1",
         placeholder = "",
         value = "",
+        onKeyDown = () => {},
         onChange = () => {},
     } = props;
 
     const handleOnChange = (value) => {
-        onChange(value);
+        onKeyDown(value);
     };
     const id = `inputFor${guidGenerator()}`;
     return (
@@ -25,6 +26,7 @@ const Input = (props) => {
                 id={id}
                 aria-describedby="basic-addon2"
                 value={value}
+                onKeyDown={handleOnChange}
                 onChange={handleOnChange}
             />
         </div>

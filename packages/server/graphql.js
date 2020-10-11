@@ -1,13 +1,13 @@
 const { graphqlHTTP } = require("express-graphql");
 const graphql = require("graphql");
-const forecastQuery = require("./src/forecast");
-const coordinatesQuery = require("./src/coordinates");
+const forecast = require("./src/forecast");
+const coordinates = require("./src/coordinates");
 
 const queryType = new graphql.GraphQLObjectType({
     name: "Query",
     fields: {
-        forecast: forecastQuery,
-        coordinates: coordinatesQuery,
+        forecast,
+        coordinates,
     },
 });
 

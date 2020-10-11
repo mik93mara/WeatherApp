@@ -27,6 +27,5 @@ export const fetchLatLong = async (city) => {
             return d.data;
         })
         .catch((error) => error);
-    console.log("fetchLatLong -> futureLatLong", futureLatLong);
     return futureLatLong;
 };

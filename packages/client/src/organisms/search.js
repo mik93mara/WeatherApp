@@ -31,9 +31,16 @@ const Search = () => {
     const handleOnChange = useCallback(
         (event) => {
             const searchValue = trim(event.target.value);
-            if (searchValue) setSearchOnCity(searchValue);
+            if (searchValue && event.key && event.key === "Enter") {
+                setSearchOnCity(searchValue);
+                searchOn(searchValue);
+                prevUnits = units;
+                setRedirect(true);
+            } else if (searchValue) {
+                setSearchOnCity(searchValue);
+            }
         },
-        [setSearchOnCity]
+        [setSearchOnCity, units, setRedirect, searchOn]
     );
 
     if (redirect) {
@@ -46,6 +53,7 @@ const Search = () => {
             <hr />
             <Input
                 onChange={handleOnChange}
+                onKeyDown={handleOnChange}
                 placeholder="London or Chicago,Illinois"
                 value={searchOnCity}
             />
