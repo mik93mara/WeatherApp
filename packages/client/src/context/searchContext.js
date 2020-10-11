@@ -9,6 +9,7 @@ const initialState = {
     units: "imperial",
     coordinates: {},
     forecast: [],
+    loading: false,
 };
 
 function reducer(state, action) {
@@ -21,6 +22,8 @@ function reducer(state, action) {
             return { ...state, forecast: action.payload };
         case "SET_UNITS":
             return { ...state, units: action.payload };
+        case "SET_LOADING":
+            return { ...state, loading: action.payload };
         default:
             return state;
     }
@@ -55,10 +58,26 @@ const SearchProvider = (props) => {
     const searchOn = async (city) => {
         if (city) {
             dispatch({
+                type: "SET_LOADING",
+                payload: true,
+            });
+            dispatch({
+                type: "SET_FORECAST",
+                payload: [],
+            });
+            dispatch({
+                type: "SET_COORDINATES",
+                payload: {},
+            });
+            dispatch({
                 type: "SET_LOCATION",
                 payload: city,
             });
             await fetchLatLongApi(city);
+            dispatch({
+                type: "SET_LOADING",
+                payload: false,
+            });
         }
     };
 

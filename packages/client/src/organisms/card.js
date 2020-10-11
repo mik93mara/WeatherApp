@@ -7,7 +7,7 @@ import { language } from "i18n";
 const Card = (props) => {
     const {
         searchState: {
-            state: { forecast },
+            state: { forecast, loading },
             state,
         },
     } = props;
@@ -19,8 +19,17 @@ const Card = (props) => {
 
             <div className="card weather-card">
                 <div className="card-body pb-3">
-                    <ForecastNow info={state} />
-                    <ForecastList list={forecast} />
+                    {loading ? (
+                        <>
+                            <i class="fa fa-cog fa-spin fa-3x fa-fw"></i>
+                            <span class="sr-only">Loading...</span>
+                        </>
+                    ) : (
+                        <>
+                            <ForecastNow info={state} />
+                            <ForecastList list={forecast} />
+                        </>
+                    )}
                 </div>
             </div>
         </>
