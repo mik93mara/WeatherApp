@@ -1,7 +1,7 @@
 const fetch = require("node-fetch");
 const get = require("lodash/get");
 const map = require("lodash/map");
-const { oneCall } = require("../weather");
+const { oneCall } = require("../config");
 
 const futureDaysForecast = (futureDays, unit) =>
     map(futureDays || [], (day) => {

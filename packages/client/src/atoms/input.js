@@ -11,8 +11,13 @@ const Input = (props) => {
     } = props;
 
     const handleOnChange = (value) => {
-        onKeyDown(value);
+        onChange(value);
     };
+    const handleOnKeyDown = (event) => {
+        if (event.key && event.key === "Enter") {
+            onKeyDown(event);
+        }
+    }
     const id = `inputFor${guidGenerator()}`;
     return (
         <div className="form-group">
@@ -26,7 +31,7 @@ const Input = (props) => {
                 id={id}
                 aria-describedby="basic-addon2"
                 value={value}
-                onKeyDown={handleOnChange}
+                onKeyDown={handleOnKeyDown}
                 onChange={handleOnChange}
             />
         </div>

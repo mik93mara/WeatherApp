@@ -26,22 +26,19 @@ const Search = () => {
             prevUnits = units;
         }
         setRedirect(true);
-    }, [searchOnCity, searchOn, units, prevUnits]);
+    }, [searchOnCity, searchOn, units, state]);
 
     const handleOnChange = useCallback(
         (event) => {
             const searchValue = trim(event.target.value);
-            if (searchValue && event.key && event.key === "Enter") {
-                setSearchOnCity(searchValue);
-                searchOn(searchValue);
-                prevUnits = units;
-                setRedirect(true);
-            } else if (searchValue) {
-                setSearchOnCity(searchValue);
-            }
+            setSearchOnCity(searchValue);
         },
-        [setSearchOnCity, units, setRedirect, searchOn]
+        [setSearchOnCity]
     );
+
+    const handleOnKeyDown = useCallback(() => {
+        handleOnClick();
+    }, [handleOnClick]);
 
     if (redirect) {
         return <Redirect to="/" push />;
@@ -53,7 +50,7 @@ const Search = () => {
             <hr />
             <Input
                 onChange={handleOnChange}
-                onKeyDown={handleOnChange}
+                onKeyDown={handleOnKeyDown}
                 placeholder="London or Chicago,Illinois"
                 value={searchOnCity}
             />

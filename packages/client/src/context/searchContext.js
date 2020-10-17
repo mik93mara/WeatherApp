@@ -1,5 +1,4 @@
 import * as React from "react";
-import get from "lodash/get";
 import { fetchForecast, fetchLatLong } from "api";
 
 const SearchContext = React.createContext(undefined, undefined);

@@ -1,5 +1,5 @@
 const fetch = require("node-fetch");
-const { weather } = require("../weather");
+const { weather } = require("../config");
 
 const getLocation = (city, state) => {
     let location = "";

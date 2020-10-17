@@ -11,7 +11,8 @@ const Units = () => {
     const handleClick = useCallback((unit) => {
         setCheckedValue(unit);
         setUnits(unit);
-    }, []);
+    }, [setUnits]);
+
     return (
         <div className="col-12 mb-1">
             <Radio
